@@ -24,6 +24,4 @@ def main():
     print(f"Total rows present in the current DataSet is : {total_rows}")
     print(f"Total columns present in the current DataSet is : {total_columns}")
 
-
-
 main()
