@@ -57,7 +57,6 @@ def find_invalid_emails(employees):
                 count_invalid_email+=1       
     return count_invalid_email
 
-
 def find_invalid_age(employees):
     count_invalid_age=0
     for line in employees:
@@ -80,6 +79,25 @@ def find_invalid_age(employees):
         #         count_invalid_age += 1
     return count_invalid_age
 
+def find_invalid_salary(employees):
+    count_invalid_salary=0
+    for line in employees:
+        salary_str=line["salary"]
+        cleaned_salary=len(salary_str.strip())
+        if cleaned_salary==0:
+            continue
+        try:
+            salary_int=int(salary_str)
+        except ValueError:
+            count_invalid_salary+=1
+        else:
+            if salary_int < 1 or salary_int > 500000:
+                count_invalid_salary+=1
+
+    return count_invalid_salary
+
+
+
 
 def main():
 
@@ -87,9 +105,11 @@ def main():
     total_rows = count_rows(employees)
     total_columns= count_columns(employees)
     total_invalid_emails=find_invalid_emails(employees)
+    total_invalid_age= find_invalid_age(employees)
+    total_invalid_salary=find_invalid_salary(employees)
     # count_missing_first_name=find_missing_first_name(employees)
     # column_name=input("Enter column name...\n The options you have is : id | first_name | last_name | email | gender | country | joining_date | salary | department | age ")
-    total_invalid_age= find_invalid_age(employees)
+   
 
     # print(employees)
     print(f"Total rows present in the current DataSet is : {total_rows}")
@@ -105,6 +125,8 @@ def main():
     # print(f"Count of missing values in {column_name} is {column_missing_values}")
     print(f"Count of invalid emails {total_invalid_emails} ")
     print(f"Count of invalid age {total_invalid_age} ")
+    print(f"Count of invalid salary {total_invalid_salary} ")
+
 
 
 main()
