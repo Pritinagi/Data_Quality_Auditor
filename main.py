@@ -97,7 +97,23 @@ def find_invalid_salary(employees):
     return count_invalid_salary
 
 
-
+from datetime import datetime
+# helpful with date and time
+def find_invalid_joining_date(employees):
+    count_invalid_dates=0
+    
+    for line in employees:
+        
+        joining_dates=line["joining_date"]
+        cleaned_date=len(joining_dates.strip())
+        if cleaned_date==0:
+            continue
+        try:
+            joining_date=datetime.strptime(joining_dates,"%m/%d/%Y")
+        except ValueError:
+            count_invalid_dates+=1
+        
+    return count_invalid_dates
 
 def main():
 
@@ -107,6 +123,9 @@ def main():
     total_invalid_emails=find_invalid_emails(employees)
     total_invalid_age= find_invalid_age(employees)
     total_invalid_salary=find_invalid_salary(employees)
+    total_invalid_joining_date=find_invalid_joining_date(employees)
+
+
     # count_missing_first_name=find_missing_first_name(employees)
     # column_name=input("Enter column name...\n The options you have is : id | first_name | last_name | email | gender | country | joining_date | salary | department | age ")
    
@@ -126,6 +145,8 @@ def main():
     print(f"Count of invalid emails {total_invalid_emails} ")
     print(f"Count of invalid age {total_invalid_age} ")
     print(f"Count of invalid salary {total_invalid_salary} ")
+    print(f"Count of invalid Joining Date {total_invalid_joining_date} ")
+
 
 
 
