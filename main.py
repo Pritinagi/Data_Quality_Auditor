@@ -34,11 +34,37 @@ def find_missing_values(employees, column_name):
             count+=1
     return count
 
+def find_invalid_emails(employees):
+    count =0
+    for line in employees:
+        email=line["email"]
+        value_error_1=email.count('@')
+        cleaned_email=len(email.strip())
+        if cleaned_email==0:
+            continue      
+        elif '@' not in email:
+             count+=1
+        elif value_error_1>1 :
+            count+=1
+        else:
+            parts = email.split("@")
+            part_1=len(parts[0])
+            part_2=len(parts[1])
+            part_2_value=parts[1].count(".")
+            if part_1==0 or part_2==0:
+                count+=1    
+            elif part_2_value<1:
+                count+=1       
+    return count
+
+
+
 def main():
 
     employees = load_csv()
     total_rows = count_rows(employees)
     total_columns= count_columns(employees)
+    total_invalid_emails=find_invalid_emails(employees)
     # count_missing_first_name=find_missing_first_name(employees)
     # column_name=input("Enter column name...\n The options you have is : id | first_name | last_name | email | gender | country | joining_date | salary | department | age ")
     
@@ -55,5 +81,6 @@ def main():
         print(f"Count of missing values in {column_name} is {column_missing_values}")
     # print(f"Count of Missing First Name  : {count_missing_first_name}")
     # print(f"Count of missing values in {column_name} is {column_missing_values}")
+    print(f"Count of invalid emails {total_invalid_emails} ")
 
 main()
