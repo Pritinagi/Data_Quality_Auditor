@@ -12,9 +12,9 @@ def count_rows(employees):
     return total_rows
 
 def count_columns(employees):
-    first_employee=employees[0]
     if not employees:
         return 0
+    first_employee=employees[0]
     total_columns=len(first_employee)
     return total_columns
 
@@ -117,24 +117,43 @@ def find_invalid_joining_date(employees):
             count_invalid_dates+=1
     return count_invalid_dates
 
-def find_duplicate_values(employees, column_name):
-    seen=set()
-    duplicate=set()
-    count_duplicate_entry=0
-    count_seen={}
-    for line in employees:
+# def find_duplicate_values(employees, column_name):
+#     seen=set()
+#     duplicate=set()
+#     count_duplicate_entry=0
+#     count_seen={}
+#     for line in employees:
         
-        column_value=line[column_name]
-        cleaned_column_value=column_value.strip()
-        if not cleaned_column_value:
+#         column_value=line[column_name]
+#         cleaned_column_value=column_value.strip()
+#         if not cleaned_column_value:
+#             continue
+#         elif cleaned_column_value in seen:
+#             duplicate.add(cleaned_column_value)
+#             count_duplicate_entry+=1
+#             count_seen[cleaned_column_value]=count_seen.get(cleaned_column_value,0)+1
+#         else:
+#             seen.add(cleaned_column_value)
+#     return count_duplicate_entry,count_seen
+
+
+
+
+# a new fnction for find_duplicate_values 
+def find_duplicate_values(employees,  column_name):
+    occurrence={}
+    duplicate={}
+    for line in employees:
+        column_value=line[ column_name]
+        cleaned_column_data= column_value.strip()
+        if not cleaned_column_data:
             continue
-        elif cleaned_column_value in seen:
-            duplicate.add(cleaned_column_value)
-            count_duplicate_entry+=1
-            count_seen[cleaned_column_value]=count_seen.get(cleaned_column_value,0)+1
         else:
-            seen.add(cleaned_column_value)
-    return count_duplicate_entry,count_seen
+            occurrence[cleaned_column_data]=occurrence.get(cleaned_column_data,0)+1
+    for value, count in occurrence.items():
+                if count>1:
+                    duplicate[value]=count
+    return duplicate
 
 
 
@@ -155,30 +174,55 @@ def main():
    
 
     # print(employees)
-    print(f"Total rows present in the current DataSet is : {total_rows}")
-    print(f"Total columns present in the current DataSet is : {total_columns}")
-    column_names= [
+    print("="*30 )
+    print("Data Quality Check")
+    print("="*30 )
+
+    print("Dataset Summary")
+    print("-"*30 )
+    
+    print(f"Total rows present in the current DataSet is : {total_rows:<25}")
+    print(f"Total columns present in the current DataSet is : {total_columns:<20}")
+    missing_columns= [
         "first_name","last_name","email","gender","joining_date","department"
         # add the name of columne you want to check out 
     ]
-    for column_name in column_names:
-        column_missing_values =find_missing_values(employees,column_name )
-        print(f"Count of missing values in {column_name} is {column_missing_values}")
+    print("-"*30 )
+    for missing_column in missing_columns:
+        column_missing_values =find_missing_values(employees,missing_column )
+        print(f"Missing values in {missing_column:<20} is {column_missing_values:<20}")
 
     # print(f"Count of Missing First Name  : {count_missing_first_name}")
     # print(f"Count of missing values in {column_name} is {column_missing_values}")
-    print(f"Count of invalid emails {total_invalid_emails} ")
-    print(f"Count of invalid age {total_invalid_age} ")
-    print(f"Count of invalid salary {total_invalid_salary} ")
-    print(f"Count of invalid Joining Date {total_invalid_joining_date} ")
+    print(f"Invalid emails {total_invalid_emails} ")
+    print(f"Invalid age {total_invalid_age} ")
+    print(f"Invalid salary {total_invalid_salary} ")
+    print(f"Invalid Joining Date {total_invalid_joining_date} ")
     
-    column_names= [
+    column_name= [
             "first_name","last_name","email","joining_date","department"
             # add the name of columne you want to check out 
         ]
-    for column_name in column_names:
-            total_invalid_column_details, count_seen_for_every_duplicate=find_duplicate_values(employees,column_name)
-            print(f"Count of duplicate data in : {column_name}\n duplicate occurence : {total_invalid_column_details}\n and the duplicate values are : {count_seen_for_every_duplicate}")
+    for duplicate_column in  column_name:
+        duplicate=find_duplicate_values(employees,duplicate_column)
+        # print("="*30)
+        print(f"column : {duplicate_column}")
+        
+        
+        print("Duplicate items and their occurrences ")
+        print("="*30 )
+
+        # for total_dupliacte in occurrence.items():
+        if duplicate:
+            for value,count in duplicate.items():
+                print(f"{value:<20} : {count}")
+        else:
+            print("No duplicates found")
+        print("-"*30 ,"\n")
+        
+            
+            # total_invalid_column_details, count_seen_for_every_duplicate=find_duplicate_values(employees,column_name)
+            # print(f"Count of duplicate data in : {column_name}\n duplicate occurence : {total_invalid_column_details}\n and the duplicate values are : {count_seen_for_every_duplicate}")
 
 
 
