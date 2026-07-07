@@ -1,4 +1,6 @@
 import csv
+from datetime import datetime
+
 def load_csv():
     with open("employee_data.csv","r") as csv_file:
         csv_reader=csv.DictReader(csv_file)
@@ -100,7 +102,6 @@ def find_invalid_salary(employees):
     return count_invalid_salary
 
 
-from datetime import datetime
 # helpful with date and time
 def find_invalid_joining_date(employees):
     count_invalid_dates=0
@@ -203,11 +204,14 @@ def main():
             "first_name","last_name","email","joining_date","department"
             # add the name of columne you want to check out 
         ]
+    
+
     for duplicate_column in  column_name:
         duplicate=find_duplicate_values(employees,duplicate_column)
+        duplicate_items_found=len(duplicate)
         # print("="*30)
         print(f"column : {duplicate_column}")
-        
+        print(f"Duplicate items : {duplicate_items_found}")
         
         print("Duplicate items and their occurrences ")
         print("="*30 )
