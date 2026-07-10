@@ -10,6 +10,7 @@ from datetime import datetime
 #     return count
 
 def find_missing_values(employees, column_name):
+    
     count_missing_row=0
     for line in employees:
         column_value=line[column_name]
