@@ -1,9 +1,11 @@
 import csv
+import config
 from logger_config import logger
+
 def load_csv():
-    logger.info("Starting to load employee_data.csv")
+    logger.info("Starting to load %s" , config.CSV_FILE)
     try:
-        with open("employee_data.csv","r",  encoding="utf-8") as csv_file:
+        with open(config.CSV_FILE,"r",  encoding="utf-8") as csv_file:
             csv_reader=csv.DictReader(csv_file)
             employees=[]
 
@@ -12,7 +14,7 @@ def load_csv():
         logger.info("CSV loaded successfully | total records: %d", len(employees))
         return employees
     except FileNotFoundError:
-        logger.error("employee_data.csv file not found")
+        logger.error("%s file not found",config.CSV_FILE)
         raise
     except Exception :
         logger.exception("Error while loading CSV file ")

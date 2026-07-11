@@ -1,11 +1,13 @@
 import logging
+import config
+
 
 logger=logging.getLogger("DATA QUALITY AUDITOR")
 
 if not logger.handlers :
         # file handler
     logger.setLevel(logging.DEBUG)
-    file_handler=logging.FileHandler('app.log', encoding="utf-8")
+    file_handler=logging.FileHandler(config.LOG_FILE, encoding="utf-8")
     file_handler.setLevel(logging.DEBUG)
 
     # formatter

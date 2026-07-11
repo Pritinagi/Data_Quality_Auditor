@@ -1,5 +1,5 @@
 from datetime import datetime
-
+import config
 # def find_missing_first_name(employees):
 #     count=0
 #     for line in employees:
@@ -55,7 +55,7 @@ def find_invalid_age(employees):
         except ValueError:
             count_invalid_age+=1
         else :
-            if int_age < 18 or int_age > 65:
+            if int_age < config.MIN_AGE or int_age > config.MAX_AGE:
                 count_invalid_age += 1
 
         # it is an alternative
@@ -77,7 +77,7 @@ def find_invalid_salary(employees):
         except ValueError:
             count_invalid_salary+=1
         else:
-            if salary_int < 1 or salary_int > 500000:
+            if salary_int < config.MIN_SALARY or salary_int > config.MAX_SALARY:
                 count_invalid_salary+=1
 
     return count_invalid_salary
@@ -94,7 +94,7 @@ def find_invalid_joining_date(employees):
         if cleaned_date==0:
             continue
         try:
-            datetime.strptime(joining_dates,"%m/%d/%Y")
+            datetime.strptime(joining_dates, config.JOINING_DATE_FORMAT)
         except ValueError:
             count_invalid_dates+=1
     return count_invalid_dates

@@ -1,3 +1,7 @@
+import config
+
+
+
 from validators import find_missing_values, find_duplicate_values
 def generate_report(employees,
                     total_rows,
@@ -6,7 +10,7 @@ def generate_report(employees,
                     total_invalid_age,
                     total_invalid_salary,
                     total_invalid_joining_date):
-        with open("report.txt","w") as file:
+        with open(config.REPORT_FILE,"w") as file:
             file.write("="*40 + "\n")
             file.write("DATA QUALITY REPORT\n")
             file.write("="*40 + "\n\n")
