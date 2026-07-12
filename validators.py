@@ -57,8 +57,8 @@ def find_invalid_emails(employees):
             domain_value=parts[1].count(".")
             if username_len==0 or domain_len==0:
                 count_invalid_email+=1    
-            # elif username!=username.strip():
-            #     count_invalid_email+=1  
+            elif username!=username.strip():
+                count_invalid_email+=1  
             elif username.startswith(".") or username.endswith('.'):
                 count_invalid_email+=1  
             elif  domain.startswith(".") or domain.endswith('.'):
@@ -67,29 +67,39 @@ def find_invalid_emails(employees):
                 count_invalid_email+=1  
             elif '..' in domain:
                 count_invalid_email+=1 
-            # elif domain!=domain.strip():
-            #     count_invalid_email+=1   
-            elif (" " in domain.strip()) or (" " in username.strip()):
+            elif domain!=domain.strip():
+                count_invalid_email+=1   
+            elif (" " in domain.strip()):
+                count_invalid_email+=1 
+            elif (" " in username.strip()):
                 count_invalid_email+=1 
             elif domain_value<1:
                 count_invalid_email+=1       
     return count_invalid_email
 
 def find_invalid_age(employees):
+    """Count employees with invalid ages"""
     count_invalid_age=0
     for line in employees:
         age=line["age"]
         # cleaned_age=len(age.strip())
         # if cleaned_age==0:
-        if not age:
+        
+        if age is None:
+                count_invalid_age += 1
+                continue
+        if isinstance(age, str) and age.strip()=="":
+            count_invalid_age += 1
             continue
         try:
             int_age=int(age)
-        except ValueError:
+        except (ValueError, TypeError):
             count_invalid_age+=1
         else :
             if int_age < config.MIN_AGE or int_age > config.MAX_AGE:
                 count_invalid_age += 1
+            
+            
 
         # it is an alternative
         # if age.isnumeric():

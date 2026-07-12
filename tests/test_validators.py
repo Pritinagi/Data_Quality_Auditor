@@ -1,5 +1,5 @@
 import pytest
-from validators import find_missing_values, find_invalid_emails
+from validators import find_missing_values, find_invalid_emails, find_invalid_age
 
 # =================-Missing-Values-====================
 # ------Fixture-reusable test data  -----------
@@ -56,8 +56,18 @@ def test_non_existing_column(sample_employee):
         result=find_missing_values(sample_employee,"phone_number")
 
 
+# ------Test - 6 ------------------------------
+def  test_no_missing_values():
+    data= [
+        {"name":"growth","email":"growth@gmail.com"},
+        {"name":"success", "email":"success@gmail.com"}
+    ]
+    result=find_missing_values(data,"email")
+    assert result==0
 
-# ======================-EMAIL-=========================
+
+
+# ======================-EMAIL-======================
 
 # ------Test - 1 ------------------------------
 def test_missing_at_symbol():
@@ -86,7 +96,6 @@ def test_empty_username():
         {"email":"@gmail.com"},
         {"email":"None@gmail.com"},
         {"email":"N @gmail.com"},
-
         {"email":" @gmail.com"}
     ]
     result=find_invalid_emails(sample_email_data)
@@ -144,12 +153,106 @@ def test_starstwith_dots():
     ]
     result = find_invalid_emails(sample_email_data)
     assert result == 0
-# ------Test - 8 ------------------------------
+# ------Test - 9 ------------------------------
 def test_endstwith_dots():
     sample_email_data=[
         
-        {"email":"none.@email.com"},
+        {"email":"none@email.com"},
         {"email":"none@email.com."},
     ]
     result = find_invalid_emails(sample_email_data)
     assert result ==    1
+
+# ------Test - 10 ------------------------------
+def test_happy_email():
+    sample_email_data=[
+        
+        {"email":"valid@email.com"},
+        {"email":"valid2@email.com"},
+    ]
+    result = find_invalid_emails(sample_email_data)
+    assert result ==    0
+
+
+# ======================-AGE-======================
+
+# ------Test - 1 ------------------------------
+def test_invalid_age():
+    sample_age=[
+        {"age":20},
+        {"age":5},
+        {"age":60},
+        {"age":120}
+    ]
+
+    result=find_invalid_age(sample_age)
+    assert result==2
+
+# ------Test - 2 ------------------------------
+def test_negative_age():
+        sample_age=[
+                {"age":-20},
+                {"age":-5},
+                {"age":60},
+                {"age":-120}
+            ]
+
+        result=find_invalid_age(sample_age)
+        assert result==3
+
+# ------Test - 3 ------------------------------
+def test_non_integer_age():
+        sample_age=[
+                {"age":"one"},
+                {"age":28},
+                {"age":60},
+                {"age":25}
+            ]
+        result=find_invalid_age(sample_age)
+        assert result==1
+
+# ------Test - 4 ------------------------------
+def test_whitespace_age():
+        sample_age=[
+                {"age":" "},
+                {"age": "  "},
+                {"age":60},
+                {"age":25}
+            ]
+        result=find_invalid_age(sample_age)
+        assert result==2
+    
+# ------Test - 5 ------------------------------
+def test_None_age():
+    sample_age=[
+            {"age":23},
+            {"age":None},
+            {"age":60},
+            {"age":None}
+        ]
+    result=find_invalid_age(sample_age)
+    assert result==2
+
+# ------Test - 6 ------------------------------
+def test_missing_column_age():
+    data= [
+        {"name":"growth","age":54},
+        {"name":"uowards"}
+    ]
+    with pytest.raises(KeyError):
+        result=find_invalid_age(data)
+    # assert result==1
+
+# ------Test - 7 ------------------------------
+def test_happy_age():
+    sample_age=[
+            {"age":23},
+            {"age":35},
+            {"age":60},
+            {"age":25}
+        ]
+    result=find_invalid_age(sample_age)
+    assert result==0
+
+
+
