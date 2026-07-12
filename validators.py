@@ -20,25 +20,58 @@ def find_missing_values(employees, column_name):
     return count_missing_row
 
 def find_invalid_emails(employees):
+    """count employees with invalid emails, 
+        An email is considered invalid if:
+        - It is missing the '@' symbol.
+        - It contains more than one '@' symbol.
+        - The local part (before '@') is empty.
+        - The domain part (after '@') is empty.
+        - The domain contains no dot ('.').
+        Blank or whitespace-only emails are skipped (not counted as invalid).
+    """
+
     count_invalid_email =0
     for line in employees:
         email=line["email"]
+        if email is None:
+            count_invalid_email+=1
+            continue
         value_error_1=email.count('@')
         cleaned_email=len(email.strip())
+        
         if cleaned_email==0:
             continue      
         elif '@' not in email:
              count_invalid_email+=1
+        
         elif value_error_1>1 :
             count_invalid_email+=1
+        
         else:
+            email=email.strip()
             parts = email.split("@")
-            part_1=len(parts[0])
-            part_2=len(parts[1])
-            part_2_value=parts[1].count(".")
-            if part_1==0 or part_2==0:
+            username=parts[0]
+            username_len=len(username)
+            domain=parts[1]
+            domain_len=len(domain)
+            domain_value=parts[1].count(".")
+            if username_len==0 or domain_len==0:
                 count_invalid_email+=1    
-            elif part_2_value<1:
+            # elif username!=username.strip():
+            #     count_invalid_email+=1  
+            elif username.startswith(".") or username.endswith('.'):
+                count_invalid_email+=1  
+            elif  domain.startswith(".") or domain.endswith('.'):
+                count_invalid_email+=1  
+            elif '..' in username:
+                count_invalid_email+=1  
+            elif '..' in domain:
+                count_invalid_email+=1 
+            # elif domain!=domain.strip():
+            #     count_invalid_email+=1   
+            elif (" " in domain.strip()) or (" " in username.strip()):
+                count_invalid_email+=1 
+            elif domain_value<1:
                 count_invalid_email+=1       
     return count_invalid_email
 

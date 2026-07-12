@@ -1,6 +1,7 @@
 import pytest
-from validators import find_missing_values
+from validators import find_missing_values, find_invalid_emails
 
+# =================-Missing-Values-====================
 # ------Fixture-reusable test data  -----------
 @pytest.fixture
 def sample_employee():
@@ -53,3 +54,102 @@ def test_missing_column_key():
 def test_non_existing_column(sample_employee):
     with pytest.raises(KeyError):
         result=find_missing_values(sample_employee,"phone_number")
+
+
+
+# ======================-EMAIL-=========================
+
+# ------Test - 1 ------------------------------
+def test_missing_at_symbol():
+    sample_email_data= [
+            {"email":"invallid.com"},
+            {"email":"invallid.at.com"}
+        ]
+    result=find_invalid_emails(sample_email_data)
+    assert result==2
+
+# ------Test - 2 ------------------------------
+def test_missing_dot_symbol():
+    sample_email_data=[
+        {"email":"valid@gmail.com"},
+        {"email":"invalid@gmailcom"},
+        {"email":"invalid@gmail@dot@com"},
+    ]
+
+    result=find_invalid_emails(sample_email_data)
+    assert result==2
+
+# ------Test - 3 ------------------------------
+def test_empty_username():
+    sample_email_data=[
+        {"email":"valid@gmail.com"},
+        {"email":"@gmail.com"},
+        {"email":"None@gmail.com"},
+        {"email":"N @gmail.com"},
+
+        {"email":" @gmail.com"}
+    ]
+    result=find_invalid_emails(sample_email_data)
+    assert result==3
+
+# ------Test - 4 ------------------------------
+def test_empty_domain():
+    sample_email_data=[
+        {"email":"valid@gmail.com"},
+        {"email":"invalid@"},
+        {"email":"Nonevalid@gmail.com"},
+        {"email":"invaid@ m"},
+        {"email":"invalid@gmail.c om "}
+    ]
+    result=find_invalid_emails(sample_email_data)
+    assert result==3
+
+# ------Test - 5 ------------------------------
+def test_email_with_empty_username():
+    sample_email_data=[
+        {"email":""},
+        {"email":None},
+        {"email":" None"},
+        {"email":"valid@email.com"},
+    ]
+    result = find_invalid_emails(sample_email_data)
+    assert result == 2
+
+# ------Test - 6 ------------------------------
+def test_none_email():
+    sample_email_data=[
+        
+        {"email":None},
+        {"email":"none@email.com"},
+    ]
+    result = find_invalid_emails(sample_email_data)
+    assert result == 1
+
+# ------Test - 7 ------------------------------
+def test_double_dots():
+    sample_email_data=[
+        
+        {"email":"none@email..com"},
+        {"email":"none..@email.com"},
+    ]
+    result = find_invalid_emails(sample_email_data)
+    assert result == 2
+
+# ------Test - 8 ------------------------------
+def test_starstwith_dots():
+    sample_email_data=[
+        
+        {"email":"none@email.com"},
+        {"email":"none@email.com"},
+    ]
+    result = find_invalid_emails(sample_email_data)
+    assert result == 0
+# ------Test - 8 ------------------------------
+def test_endstwith_dots():
+    sample_email_data=[
+        
+        {"email":"none.@email.com"},
+        {"email":"none@email.com."},
+    ]
+    result = find_invalid_emails(sample_email_data)
+    assert result ==    1
