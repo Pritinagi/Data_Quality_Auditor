@@ -271,4 +271,125 @@ def test_happy_age():
 
 # ------Test - 1 ------------------------------
 
-# def test_
+def test_none_salary():
+    data=[
+        {"salary":70000},
+        {"salary":87834},
+        {"salary":None},
+        {"salary":70000},
+        {"salary":70000}
+
+    ]
+    result=find_invalid_salary(data)
+    assert result==1
+
+# ------Test - 2 ------------------------------
+
+def test_min_salary():
+    data=[
+        {"salary":70000},
+        {"salary":87834},
+        {"salary":1000},
+        {"salary":0},
+        {"salary":5000}
+
+    ]
+    result=find_invalid_salary(data)
+    assert result==1
+
+# ------Test - 3 ------------------------------
+
+def test_max_salary():
+    data=[
+        {"salary":500001},
+        {"salary":87834},
+        {"salary":50000},
+        {"salary":70000},
+        {"salary":70000}
+
+    ]
+    result=find_invalid_salary(data)
+    assert result==1
+
+# ------Test - 4 ------------------------------
+
+def test_empty_salary():
+    data=[
+        {"salary":50000},
+        {"salary":87834},
+        {"salary":""},
+        {"salary":70000},
+        {"salary":70000}
+
+    ]
+    result=find_invalid_salary(data)
+    assert result==1
+
+# ------Test - 5 ------------------------------
+
+def test_whitespace_salary():
+    data=[
+        {"salary":50000},
+        {"salary":87834},
+        {"salary":" "},
+        {"salary":70000},
+        {"salary":70000}
+
+    ]
+    result=find_invalid_salary(data)
+    assert result==1
+
+
+# ------Test - 6 ------------------------------
+
+def test_missing_salary_column():
+    data=[
+        {"salary":50000},
+        {"salary":87834},
+        {},
+        {"salary":70000},
+        {"salary":70000}
+
+    ]
+    with pytest.raises(KeyError):
+        result=find_invalid_salary(data)
+
+# ------Test - 7 ------------------------------
+
+def test_negative_salary():
+    data=[
+        {"salary":50000},
+        {"salary":87834},
+        {"salary":-87834},
+        {"salary":70000},
+        {"salary":70000}
+
+    ]
+    result=find_invalid_salary(data)
+    assert result==1
+
+# ------Test - 8 ------------------------------
+
+def test_non_integer_salary():
+    data=[
+        {"salary":50000},
+        {"salary":87834},
+        {"salary":"eight hundred"},
+        {"salary":70000},
+        {"salary":70000}
+
+    ]
+    result=find_invalid_salary(data)
+    assert result==1
+
+# ------Test - 9 ------------------------------
+
+def test_happy_salary():
+    salary=[
+         {"salary":50000},
+         {"salary":70000},
+         {"salary":70000}
+        ]
+    result=find_invalid_salary(salary)
+    assert result==0
+

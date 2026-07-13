@@ -110,12 +110,14 @@ def find_invalid_salary(employees):
     for line in employees:
         salary_str=line["salary"]
         if salary_str is None:
-                count_invalid_age += 1
+                count_invalid_salary += 1
                 continue
-        # cleaned_salary=len(salary_str.strip())
-        # if cleaned_salary==0:
-        if isinstance(salary_str,str) or salary_str.strip()=="":
-            count_invalid_age += 1
+        
+        if isinstance(salary_str,bool):
+            count_invalid_salary += 1
+            continue
+        if isinstance(salary_str,str) and salary_str.strip()=="":
+            count_invalid_salary += 1
             continue
         try:
             salary_int=int(salary_str)
