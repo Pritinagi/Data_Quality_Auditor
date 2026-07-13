@@ -1,5 +1,5 @@
 import pytest
-from validators import find_missing_values, find_invalid_emails, find_invalid_age
+from validators import find_missing_values, find_invalid_emails, find_invalid_age, find_invalid_salary
 
 # =================-Missing-Values-====================
 # ------Fixture-reusable test data  -----------
@@ -177,18 +177,30 @@ def test_happy_email():
 # ======================-AGE-======================
 
 # ------Test - 1 ------------------------------
-def test_invalid_age():
+def test_invalid_max_age():
     sample_age=[
-        {"age":20},
-        {"age":5},
+        {"age":120},
+        {"age":35},
         {"age":60},
-        {"age":120}
+        {"age":150}
     ]
 
     result=find_invalid_age(sample_age)
     assert result==2
 
 # ------Test - 2 ------------------------------
+def test_invalid_min_age():
+    sample_age=[
+        {"age":23},
+        {"age":5},
+        {"age":6},
+        {"age":56}
+    ]
+
+    result=find_invalid_age(sample_age)
+    assert result==2
+
+# ------Test - 3 ------------------------------
 def test_negative_age():
         sample_age=[
                 {"age":-20},
@@ -200,7 +212,7 @@ def test_negative_age():
         result=find_invalid_age(sample_age)
         assert result==3
 
-# ------Test - 3 ------------------------------
+# ------Test - 4 ------------------------------
 def test_non_integer_age():
         sample_age=[
                 {"age":"one"},
@@ -211,7 +223,7 @@ def test_non_integer_age():
         result=find_invalid_age(sample_age)
         assert result==1
 
-# ------Test - 4 ------------------------------
+# ------Test - 5 ------------------------------
 def test_whitespace_age():
         sample_age=[
                 {"age":" "},
@@ -222,7 +234,7 @@ def test_whitespace_age():
         result=find_invalid_age(sample_age)
         assert result==2
     
-# ------Test - 5 ------------------------------
+# ------Test - 6 ------------------------------
 def test_None_age():
     sample_age=[
             {"age":23},
@@ -233,7 +245,7 @@ def test_None_age():
     result=find_invalid_age(sample_age)
     assert result==2
 
-# ------Test - 6 ------------------------------
+# ------Test - 7 ------------------------------
 def test_missing_column_age():
     data= [
         {"name":"growth","age":54},
@@ -243,7 +255,7 @@ def test_missing_column_age():
         result=find_invalid_age(data)
     # assert result==1
 
-# ------Test - 7 ------------------------------
+# ------Test - 8 ------------------------------
 def test_happy_age():
     sample_age=[
             {"age":23},
@@ -255,4 +267,8 @@ def test_happy_age():
     assert result==0
 
 
+# ======================-Salary-======================
 
+# ------Test - 1 ------------------------------
+
+# def test_

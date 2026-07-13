@@ -98,10 +98,7 @@ def find_invalid_age(employees):
         else :
             if int_age < config.MIN_AGE or int_age > config.MAX_AGE:
                 count_invalid_age += 1
-            
-            
-
-        # it is an alternative
+        #  it is an alternative
         # if age.isnumeric():
         #     int_age=int(line["age"])
         #     if int_age < 18 or int_age > 65:
@@ -112,12 +109,17 @@ def find_invalid_salary(employees):
     count_invalid_salary=0
     for line in employees:
         salary_str=line["salary"]
-        cleaned_salary=len(salary_str.strip())
-        if cleaned_salary==0:
+        if salary_str is None:
+                count_invalid_age += 1
+                continue
+        # cleaned_salary=len(salary_str.strip())
+        # if cleaned_salary==0:
+        if isinstance(salary_str,str) or salary_str.strip()=="":
+            count_invalid_age += 1
             continue
         try:
             salary_int=int(salary_str)
-        except ValueError:
+        except (ValueError,TypeError):
             count_invalid_salary+=1
         else:
             if salary_int < config.MIN_SALARY or salary_int > config.MAX_SALARY:
