@@ -1,6 +1,6 @@
 #========Files============
 
-CSV_FILE="employee_data.csv"
+CSV_FILE="data/employee_data.csv"
 LOG_FILE="logs/app.log"
 REPORT_FILE="reports/quality_report.txt"
 
