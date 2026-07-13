@@ -1,5 +1,5 @@
 import pytest
-from validators import find_missing_values, find_invalid_emails, find_invalid_age, find_invalid_salary
+from validators import find_missing_values, find_invalid_emails, find_invalid_age, find_invalid_salary ,find_invalid_joining_date
 
 # =================-Missing-Values-====================
 # ------Fixture-reusable test data  -----------
@@ -393,3 +393,167 @@ def test_happy_salary():
     result=find_invalid_salary(salary)
     assert result==0
 
+
+# ======================-Joining date-======================
+
+# ------Test - 1 ------------------------------
+def test_empty_date():
+    dates=[
+        {"joining_date":"11/6/2023"},
+        {"joining_date":"11/6/2023"},
+        {"joining_date":""},
+        {"joining_date":"11/6/2023"},
+
+    ]
+    result=find_invalid_joining_date(dates)
+    assert result==1
+
+# ------Test - 2 ------------------------------
+
+def test_whitespace_date():
+    dates=[
+        {"joining_date":"11/6/2023"},
+        {"joining_date":"11/6/2023"},
+        {"joining_date":"    "},
+        {"joining_date":"11/6/2023"},
+
+    ]
+    result=find_invalid_joining_date(dates)
+    assert result==1
+
+# ------Test - 3 ------------------------------
+def test_garbage_date():
+    dates=[
+        {"joining_date":"11/6/2023"},
+        {"joining_date":"11/6/2023"},
+        {"joining_date":"abcd"},
+        {"joining_date":"11/6/2023"},
+
+    ]
+    result=find_invalid_joining_date(dates)
+    assert result==1
+
+# ------Test - 4 ------------------------------
+
+def test_non_date_values():
+    dates=[
+        {"joining_date":"11/6/2023"},
+        {"joining_date":"11/6/2023"},
+        {"joining_date":1234},
+        {"joining_date":"11/6/2023"},
+
+    ]
+    result=find_invalid_joining_date(dates)
+    assert result==1
+
+# ------Test - 5 ------------------------------
+
+def test_boolean_date():
+    dates=[
+        {"joining_date":"11/6/2023"},
+        {"joining_date":True},
+        {"joining_date":True},
+        {"joining_date":"11/6/2023"},
+
+    ]
+    result=find_invalid_joining_date(dates)
+    assert result==2
+
+# ------Test - 6 ------------------------------
+
+def test_missing_date_column():
+    dates=[
+        {"joining_date":"11/6/2023"},
+        {"joining_date":"11/6/2023"},
+        {"joining_date":"11/6/2023"},
+        {"age":46},
+
+    ]
+    with pytest.raises(KeyError):
+        result=find_invalid_joining_date(dates)
+    
+# ------Test - 7 ------------------------------
+
+def test_none_date():
+    dates=[
+        {"joining_date":"11/6/2023"},
+        {"joining_date":"11/6/2023"},
+        {"joining_date":None},
+        
+
+    ]
+    result=find_invalid_joining_date(dates)
+    assert result==1
+    
+
+# ------Test - 8 ------------------------------
+
+def test_date_format():
+    dates=[
+        {"joining_date":"11/9/2023"},
+        {"joining_date":"11/feb/2023"},
+        {"joining_date":"3/1/2023"},
+        
+
+    ]
+    result=find_invalid_joining_date(dates)
+    assert result==1
+    
+
+# ------Test - 9  ------------------------------
+
+def test_invalid_date():
+    """date format is /m/d/yyyy"""
+    dates=[
+        {"joining_date":"11/9/2023"},
+        {"joining_date":"2025/7/23"},
+        {"joining_date":"23/13/2026"},
+        
+
+    ]
+    result=find_invalid_joining_date(dates)
+    assert result==2
+    
+
+# ------Test - 10  ------------------------------
+
+def test_invalid_date_with_time():
+    """date format is /m/d/yyyy"""
+    dates=[
+        {"joining_date":"11/9/2023:23:34"},
+        {"joining_date":"2025/7/23 :2:53:4"},
+        {"joining_date":"2/13/2026"},
+        
+
+    ]
+    result=find_invalid_joining_date(dates)
+    assert result==2
+    
+
+# ------Test - 11 ------------------------------
+
+def test_future_date():
+    dates=[
+        {"joining_date":"11/9/2027"},
+        {"joining_date":"11/7/2028"},
+        {"joining_date":"11/6/2029"},
+        
+
+    ]
+    result=find_invalid_joining_date(dates)
+    assert result==3
+    
+
+# ------Test -  ------------------------------
+
+def test_happy_date():
+    dates=[
+        {"joining_date":"11/9/2023"},
+        {"joining_date":"11/7/2023"},
+        {"joining_date":"11/6/2023"},
+        
+
+    ]
+    result=find_invalid_joining_date(dates)
+    assert result==0
+    

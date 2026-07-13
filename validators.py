@@ -133,40 +133,36 @@ def find_invalid_salary(employees):
 # helpful with date and time
 def find_invalid_joining_date(employees):
     count_invalid_dates=0
-    
     for line in employees:
-        
         joining_dates=line["joining_date"]
-        cleaned_date=len(joining_dates.strip())
-        if cleaned_date==0:
-            continue
-        try:
-            datetime.strptime(joining_dates, config.JOINING_DATE_FORMAT)
-        except ValueError:
-            count_invalid_dates+=1
-    return count_invalid_dates
-
-# def find_duplicate_values(employees, column_name):
-#     seen=set()
-#     duplicate=set()
-#     count_duplicate_entry=0
-#     count_seen={}
-#     for line in employees:
         
-#         column_value=line[column_name]
-#         cleaned_column_value=column_value.strip()
-#         if not cleaned_column_value:
-#             continue
-#         elif cleaned_column_value in seen:
-#             duplicate.add(cleaned_column_value)
-#             count_duplicate_entry+=1
-#             count_seen[cleaned_column_value]=count_seen.get(cleaned_column_value,0)+1
-#         else:
-#             seen.add(cleaned_column_value)
-#     return count_duplicate_entry,count_seen
-
-
-
+        if joining_dates is None:
+            count_invalid_dates+=1
+            continue
+        if isinstance(joining_dates, bool):
+            count_invalid_dates+=1
+            continue
+        if isinstance(joining_dates,str) and joining_dates.strip()=='':
+            count_invalid_dates+=1
+            continue
+        
+        
+        try:
+            parsed_date=datetime.strptime(joining_dates, config.JOINING_DATE_FORMAT)
+        except (ValueError,TypeError):
+            count_invalid_dates+=1
+            continue
+        today=datetime.now()
+        if today<parsed_date:
+                count_invalid_dates+=1
+                continue
+        if config.MIN_JOINING_DATE>parsed_date :
+                count_invalid_dates+=1
+                continue
+        if config.MAX_JOINING_DATE<parsed_date:
+                count_invalid_dates+=1
+                continue
+    return count_invalid_dates
 
 # a new fnction for find_duplicate_values 
 def find_duplicate_values(employees,  column_name):

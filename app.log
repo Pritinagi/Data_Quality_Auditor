@@ -248,3 +248,71 @@
 2026-07-12 11:33:04,422 - DATA QUALITY AUDITOR -INFO - Checking Duplicate values in column: department
 2026-07-12 11:33:04,428 - DATA QUALITY AUDITOR -WARNING - Found 13   duplicate value(s) in column  department 
 2026-07-12 11:33:04,430 - DATA QUALITY AUDITOR -INFO - Data Quality Auditor completed successfully.
+2026-07-13 09:56:08,802 - DATA QUALITY AUDITOR -INFO - Data Quality Auditor started.
+2026-07-13 09:56:08,802 - DATA QUALITY AUDITOR -INFO - Starting to load employee_data.csv
+2026-07-13 09:56:08,817 - DATA QUALITY AUDITOR -INFO - CSV loaded successfully | total records: 50
+2026-07-13 09:56:08,817 - DATA QUALITY AUDITOR -INFO - Checking Email Validation
+2026-07-13 09:56:08,817 - DATA QUALITY AUDITOR -WARNING - Found 3 Invalid EMAIL(S)
+2026-07-13 09:56:08,817 - DATA QUALITY AUDITOR -INFO - Checking AGE Validation
+2026-07-13 09:56:08,817 - DATA QUALITY AUDITOR -WARNING - Found 1 Invalid AGE(S)
+2026-07-13 09:56:08,817 - DATA QUALITY AUDITOR -INFO - Checking SALARY Validation
+2026-07-13 09:56:08,817 - DATA QUALITY AUDITOR -WARNING - Found 1 Invalid SALARY(S)
+2026-07-13 09:56:08,817 - DATA QUALITY AUDITOR -INFO - Checking Joining Date Validation
+2026-07-13 09:56:08,817 - DATA QUALITY AUDITOR -INFO - No Invalid Joining Date Found
+2026-07-13 09:56:08,817 - DATA QUALITY AUDITOR -INFO - Checking missing values in column: first_name
+2026-07-13 09:56:08,817 - DATA QUALITY AUDITOR -WARNING - Missing values in first_name : 7 
+2026-07-13 09:56:08,817 - DATA QUALITY AUDITOR -INFO - Checking missing values in column: last_name
+2026-07-13 09:56:08,833 - DATA QUALITY AUDITOR -WARNING - Missing values in last_name : 1 
+2026-07-13 09:56:08,833 - DATA QUALITY AUDITOR -INFO - Checking missing values in column: email
+2026-07-13 09:56:08,833 - DATA QUALITY AUDITOR -WARNING - Missing values in email : 4 
+2026-07-13 09:56:08,833 - DATA QUALITY AUDITOR -INFO - Checking missing values in column: gender
+2026-07-13 09:56:08,833 - DATA QUALITY AUDITOR -WARNING - Missing values in gender : 4 
+2026-07-13 09:56:08,833 - DATA QUALITY AUDITOR -INFO - Checking missing values in column: joining_date
+2026-07-13 09:56:08,833 - DATA QUALITY AUDITOR -WARNING - Missing values in joining_date : 2 
+2026-07-13 09:56:08,833 - DATA QUALITY AUDITOR -INFO - Checking missing values in column: department
+2026-07-13 09:56:08,833 - DATA QUALITY AUDITOR -WARNING - Missing values in department : 8 
+2026-07-13 09:56:08,833 - DATA QUALITY AUDITOR -INFO - Checking Duplicate values in column: first_name
+2026-07-13 09:56:08,833 - DATA QUALITY AUDITOR -WARNING - Found 4   duplicate value(s) in column  first_name 
+2026-07-13 09:56:08,833 - DATA QUALITY AUDITOR -INFO - Checking Duplicate values in column: last_name
+2026-07-13 09:56:08,833 - DATA QUALITY AUDITOR -WARNING - Found 5   duplicate value(s) in column  last_name 
+2026-07-13 09:56:08,833 - DATA QUALITY AUDITOR -INFO - Checking Duplicate values in column: email
+2026-07-13 09:56:08,838 - DATA QUALITY AUDITOR -WARNING - Found 4   duplicate value(s) in column  email 
+2026-07-13 09:56:08,838 - DATA QUALITY AUDITOR -INFO - Checking Duplicate values in column: joining_date
+2026-07-13 09:56:08,840 - DATA QUALITY AUDITOR -WARNING - Found 5   duplicate value(s) in column  joining_date 
+2026-07-13 09:56:08,840 - DATA QUALITY AUDITOR -INFO - Checking Duplicate values in column: department
+2026-07-13 09:56:08,841 - DATA QUALITY AUDITOR -WARNING - Found 13   duplicate value(s) in column  department 
+2026-07-13 09:56:08,843 - DATA QUALITY AUDITOR -INFO - Data Quality Auditor completed successfully.
+2026-07-13 10:18:49,850 - DATA QUALITY AUDITOR -INFO - Data Quality Auditor started.
+2026-07-13 10:18:49,850 - DATA QUALITY AUDITOR -INFO - Starting to load employee_data.csv
+2026-07-13 10:18:49,851 - DATA QUALITY AUDITOR -INFO - CSV loaded successfully | total records: 50
+2026-07-13 10:18:49,851 - DATA QUALITY AUDITOR -INFO - Checking Email Validation
+2026-07-13 10:18:49,851 - DATA QUALITY AUDITOR -WARNING - Found 3 Invalid EMAIL(S)
+2026-07-13 10:18:49,851 - DATA QUALITY AUDITOR -INFO - Checking AGE Validation
+2026-07-13 10:18:49,851 - DATA QUALITY AUDITOR -WARNING - Found 1 Invalid AGE(S)
+2026-07-13 10:18:49,851 - DATA QUALITY AUDITOR -INFO - Checking SALARY Validation
+2026-07-13 10:18:49,852 - DATA QUALITY AUDITOR -WARNING - Found 1 Invalid SALARY(S)
+2026-07-13 10:18:49,852 - DATA QUALITY AUDITOR -INFO - Checking Joining Date Validation
+2026-07-13 10:18:49,853 - DATA QUALITY AUDITOR -WARNING - Found 2 Invalid DATE(S)
+2026-07-13 10:18:49,853 - DATA QUALITY AUDITOR -INFO - Checking missing values in column: first_name
+2026-07-13 10:18:49,853 - DATA QUALITY AUDITOR -WARNING - Missing values in first_name : 7 
+2026-07-13 10:18:49,853 - DATA QUALITY AUDITOR -INFO - Checking missing values in column: last_name
+2026-07-13 10:18:49,853 - DATA QUALITY AUDITOR -WARNING - Missing values in last_name : 1 
+2026-07-13 10:18:49,853 - DATA QUALITY AUDITOR -INFO - Checking missing values in column: email
+2026-07-13 10:18:49,853 - DATA QUALITY AUDITOR -WARNING - Missing values in email : 4 
+2026-07-13 10:18:49,853 - DATA QUALITY AUDITOR -INFO - Checking missing values in column: gender
+2026-07-13 10:18:49,853 - DATA QUALITY AUDITOR -WARNING - Missing values in gender : 4 
+2026-07-13 10:18:49,853 - DATA QUALITY AUDITOR -INFO - Checking missing values in column: joining_date
+2026-07-13 10:18:49,853 - DATA QUALITY AUDITOR -WARNING - Missing values in joining_date : 2 
+2026-07-13 10:18:49,853 - DATA QUALITY AUDITOR -INFO - Checking missing values in column: department
+2026-07-13 10:18:49,853 - DATA QUALITY AUDITOR -WARNING - Missing values in department : 8 
+2026-07-13 10:18:49,853 - DATA QUALITY AUDITOR -INFO - Checking Duplicate values in column: first_name
+2026-07-13 10:18:49,853 - DATA QUALITY AUDITOR -WARNING - Found 4   duplicate value(s) in column  first_name 
+2026-07-13 10:18:49,853 - DATA QUALITY AUDITOR -INFO - Checking Duplicate values in column: last_name
+2026-07-13 10:18:49,853 - DATA QUALITY AUDITOR -WARNING - Found 5   duplicate value(s) in column  last_name 
+2026-07-13 10:18:49,853 - DATA QUALITY AUDITOR -INFO - Checking Duplicate values in column: email
+2026-07-13 10:18:49,853 - DATA QUALITY AUDITOR -WARNING - Found 4   duplicate value(s) in column  email 
+2026-07-13 10:18:49,853 - DATA QUALITY AUDITOR -INFO - Checking Duplicate values in column: joining_date
+2026-07-13 10:18:49,865 - DATA QUALITY AUDITOR -WARNING - Found 5   duplicate value(s) in column  joining_date 
+2026-07-13 10:18:49,866 - DATA QUALITY AUDITOR -INFO - Checking Duplicate values in column: department
+2026-07-13 10:18:49,868 - DATA QUALITY AUDITOR -WARNING - Found 13   duplicate value(s) in column  department 
+2026-07-13 10:18:49,870 - DATA QUALITY AUDITOR -INFO - Data Quality Auditor completed successfully.
