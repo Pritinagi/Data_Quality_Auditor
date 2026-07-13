@@ -8,7 +8,7 @@ import config
 #         if cleaned_first_name==0:
 #             count+=1
 #     return count
-
+# ======================-Missing_Values's-======================
 def find_missing_values(employees, column_name):
     
     count_missing_row=0
@@ -19,6 +19,7 @@ def find_missing_values(employees, column_name):
             count_missing_row+=1
     return count_missing_row
 
+# ======================-Email's-======================
 def find_invalid_emails(employees):
     """count employees with invalid emails, 
         An email is considered invalid if:
@@ -77,6 +78,7 @@ def find_invalid_emails(employees):
                 count_invalid_email+=1       
     return count_invalid_email
 
+# ======================-Age's-======================
 def find_invalid_age(employees):
     """Count employees with invalid ages"""
     count_invalid_age=0
@@ -105,6 +107,7 @@ def find_invalid_age(employees):
         #         count_invalid_age += 1
     return count_invalid_age
 
+# ======================-Salary's-======================
 def find_invalid_salary(employees):
     count_invalid_salary=0
     for line in employees:
@@ -129,8 +132,7 @@ def find_invalid_salary(employees):
 
     return count_invalid_salary
 
-
-# helpful with date and time
+# ======================-Joining_Date's-======================
 def find_invalid_joining_date(employees):
     count_invalid_dates=0
     for line in employees:
@@ -164,20 +166,27 @@ def find_invalid_joining_date(employees):
                 continue
     return count_invalid_dates
 
-# a new fnction for find_duplicate_values 
-def find_duplicate_values(employees,  column_name):
+# ======================-Duplicate's-======================
+def find_duplicate_values(employees, column_name):
     occurrence={}
     duplicate={}
     for line in employees:
-        column_value=line[ column_name]
-        cleaned_column_data= column_value.strip()
+        if column_name not in line:
+             continue
+        column_value=line[column_name]
+        if column_value is None:
+             continue
+        cleaned_column_data= str(column_value).strip()
+        
         if not cleaned_column_data:
             continue
         else:
             occurrence[cleaned_column_data]=occurrence.get(cleaned_column_data,0)+1
+
     for value, count in occurrence.items():
-                if count>1:
-                    duplicate[value]=count
+        if count>1:
+            duplicate[value]=count
+    
     return duplicate
 
   

@@ -1,5 +1,5 @@
 import pytest
-from validators import find_missing_values, find_invalid_emails, find_invalid_age, find_invalid_salary ,find_invalid_joining_date
+from validators import find_missing_values, find_invalid_emails, find_invalid_age, find_invalid_salary ,find_invalid_joining_date, find_duplicate_values
 
 # =================-Missing-Values-====================
 # ------Fixture-reusable test data  -----------
@@ -544,7 +544,7 @@ def test_future_date():
     assert result==3
     
 
-# ------Test -  ------------------------------
+# ------Test - 12 ------------------------------
 
 def test_happy_date():
     dates=[
@@ -556,4 +556,80 @@ def test_happy_date():
     ]
     result=find_invalid_joining_date(dates)
     assert result==0
+    
+
+
+# ======================-Duplicate's-======================
+
+# ------Test - 1 ------------------------------
+def test_string_duplicates():
+    data=[
+        {"name":"growth","age":54},
+        {"name":"uowards","age":54},
+        {"name":"growth","age":54},
+        {"name":"uowards","age":54},
+        {"name":"growth","age":55},
+        {"name":"upwards","age":58}
+    ]
+    result=find_duplicate_values(data,"name")
+    assert result=={'growth': 3, 'uowards': 2}
+ 
+    
+# ------Test - 2 ------------------------------
+def test_int_duplicates():
+    data=[
+        {"name":"growth","age":54},
+        {"name":"uowards","age":54},
+        {"name":"growth","age":54},
+        {"name":"uowards","age":54},
+        {"name":"growth","age":55},
+        {"name":"upwards","age":58}
+    ]
+
+    result=find_duplicate_values(data,"age")
+    assert result=={'54': 4}
+
+# ------Test - 3 ------------------------------
+def test_missing_duplicates_with_missing_key():
+    data=[
+        {"name":"growth","age":54},
+        {"name":"uowards","age":54},
+        {"name":"growth","age":54},
+        {"name":"uowards","age":54},
+        {"name":"growth"},
+        {"name":"upwards"}
+    ]
+
+    result=find_duplicate_values(data,"age")
+    assert result=={'54': 4}
+    
+# ------Test - 4 ------------------------------
+def test_none_duplicates():
+    data=[
+        {"name":"growth","age":24},
+        {"name":"success","age":None},
+        {"name":"upwards","age":None}
+    ]
+    # none is skipped so if multiple none is also there it will give us nothing
+
+    result=find_duplicate_values(data,"age")
+    assert result=={}
+    
+  
+# ------Test - 5 ------------------------------
+def test_multiple_key_duplicates():
+    data=[{"name":"growth","age":54,"age":54,"age":54}]
+    result=find_duplicate_values(data,"age")
+    assert result=={}
+
+    # assert result=={'age': 3}
+
+"""You're treating the dict literal as if it preserves duplicate keys. It does not. A Python dict is a key-value mapping where each key maps to exactly one value. Writing the same key multiple times is not an error, but it's also not meaningful — only the last assignment survives.
+
+This is different from:
+
+A list — can have duplicate elements
+A CSV row — can have duplicate column headers
+A database table — can have duplicate column names (though it shouldn't)"""
+    
     
