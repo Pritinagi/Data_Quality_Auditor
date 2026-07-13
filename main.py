@@ -23,6 +23,7 @@ def count_columns(employees):
 
 def main():
     #===========Function call==============#
+    print("Data Quality Auditor started.")
     logger.info("Data Quality Auditor started.")
     employees = load_csv()
     total_rows = count_rows(employees)
@@ -162,11 +163,13 @@ def main():
     total_invalid_salary,
     total_invalid_joining_date
     )
-    logger.info("Data Quality Auditor completed successfully."
-)
+    logger.info("Data Quality Auditor completed successfully.")
+    print("Data Quality Auditor completed successfully.")
+    
 
 
 
+if __name__ == "__main__":
+    main()
 
-main()
-
+"""That works when you run the file directly. But if someone imports your module, the entire pipeline runs automatically — which is almost certainly not what they want."""

@@ -15,8 +15,10 @@ def load_csv():
         return employees
     except FileNotFoundError:
         logger.error("%s file not found",config.CSV_FILE)
+        print("Error : File Not Found")
         raise
     except Exception :
         logger.exception("Error while loading CSV file ")
+        print(f"Error Loading Data {Exception}")
         raise
         

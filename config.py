@@ -1,8 +1,8 @@
 #========Files============
 
 CSV_FILE="employee_data.csv"
-LOG_FILE="app.log"
-REPORT_FILE="report.txt"
+LOG_FILE="logs/app.log"
+REPORT_FILE="reports/quality_report.txt"
 
 #========AGE============
 

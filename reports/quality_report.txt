@@ -1,0 +1,78 @@
+========================================
+DATA QUALITY REPORT
+========================================
+
+Dataset Summary
+----------------------------------------
+Total Rows : 50 
+Total Columns : 10 
+
+Validation Results
+----------------------------------------
+Total Invalid Emails :3 
+Total Invalid Age    : 1 
+Total Invalid Salary : 1 
+Total Invalid Joining date : 14 
+Missing Values ---> 
+----------------------------------------
+first_name           : 7
+last_name            : 1
+email                : 4
+gender               : 4
+joining_date         : 2
+department           : 8
+----------------------------------------
+Duplicate Values ---> 
+----------------------------------------
+
+Column : first_name
+Duplicate items : 4
+Duplicate items and their occurrences:
+Ailbert              : 2
+Elnar                : 2
+Igor                 : 2
+Ingeberg             : 2
+
+Column : last_name
+Duplicate items : 5
+Duplicate items and their occurrences:
+Swinn                : 2
+Jellico              : 2
+Dekeyser             : 2
+Schmuhl              : 2
+Rymour               : 2
+
+Column : email
+Duplicate items : 4
+Duplicate items and their occurrences:
+vswinn2@umich.edu    : 2
+ajellico3@github.io  : 2
+ischmuhli@bbc.co.uk  : 2
+irymourj@nyu.edu     : 2
+
+Column : joining_date
+Duplicate items : 5
+Duplicate items and their occurrences:
+4/3/2022             : 2
+11/6/2023            : 2
+8/7/2024             : 2
+12/29/2020           : 2
+1/10/2024            : 2
+
+Column : department
+Duplicate items : 13
+Duplicate items and their occurrences:
+Jewelry              : 3
+Clothing             : 2
+Grocery              : 5
+Games                : 4
+Kids                 : 3
+Health               : 3
+Tools                : 2
+Industrial           : 2
+Movies               : 2
+Beauty               : 2
+Outdoors             : 5
+Electronics          : 2
+Music                : 2
+----------------------------------------
