@@ -1,8 +1,13 @@
+from pathlib import Path
+
+# Yeh file (config.py) jahan hai, uska parent = project root
+BASE_DIR = Path(__file__).resolve().parent
+
 #========Files============
 
-CSV_FILE="data/employee_data.csv"
-LOG_FILE="logs/app.log"
-REPORT_FILE="reports/quality_report.txt"
+CSV_FILE=BASE_DIR/ "data" / "employee_data.csv"
+LOG_FILE=BASE_DIR/ "logs" /"app.log"
+REPORT_FILE=BASE_DIR/"reports"/"quality_report.txt"
 
 #========AGE============
 

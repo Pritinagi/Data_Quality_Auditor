@@ -65,9 +65,9 @@ def generate_report(employees,
                         file.write("No duplicates found\n")
                 file.write("-"*40 + "\n")
                 logger.info("Report Generation successfully")
-        except Exception:
+        except Exception as e:
              logger.exception("Failed to generate report.")
-             print("Failed to generate report.")
+             print(f"Failed to generate report {e}.")
              raise
                 
     

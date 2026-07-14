@@ -1,4 +1,5 @@
 import sys
+from config import CSV_FILE,LOG_FILE,REPORT_FILE
 from data_loader import load_csv 
 from validators import find_missing_values, find_invalid_age, find_invalid_salary,find_invalid_joining_date, find_invalid_emails, find_duplicate_values
 from report_generator import generate_report
