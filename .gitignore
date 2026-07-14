@@ -1,5 +1,32 @@
+# Python cache
 __pycache__/
 *.pyc
+*.pyo
+
+# Test cache
+.pytest_cache/
+
+# Virtual environments
 .venv/
 venv/
-report.txt
+env/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Data
+data/*
+!data/.gitkeep
+
+# Reports
+reports/*
+!reports/.gitkeep
+
+# Logs
+logs/*
+!logs/.gitkeep
